@@ -3,9 +3,13 @@ import React, { Component } from 'react';
 export default class App extends Component {
   render() {
     return (
-      <div>
-        Hello world.............
-      </div>
+      <ul className="my-list">
+        <li>akateason.top</li>        
+        <li>i love React</li>
+      </ul>      
     )
   };
 }
+
+
+
