@@ -13,6 +13,7 @@ export default class Xiaojiejie extends Component{
     return(      
         <Fragment>
           <div>
+          {/*  状态绑定, 和事件绑定 */}
             <input value={this.state.inputValue} onChange={this.inputChange.bind(this)} />
             <button>增加服务</button>
           </div>
@@ -25,8 +26,8 @@ export default class Xiaojiejie extends Component{
   }
  
   inputChange(e){
-    console.log(e.target.value);
-    console.log(this);
+    console.log(e.target.value); 
+    console.log(this); // this.inputChange.bind(this) 不写就是undefined
     this.setState(
       {inputValue:e.target.value}
     );
