@@ -4,8 +4,8 @@ export default class Xiaojiejie extends Component{
   constructor(props) {
     super(props);
     this.state={
-      inputValue:'jspang',
-      list:[]
+      inputValue:'',
+      list:['服务1','服务2']
     }
   }
 
@@ -15,11 +15,15 @@ export default class Xiaojiejie extends Component{
           <div>
           {/*  状态绑定, 和事件绑定 */}
             <input value={this.state.inputValue} onChange={this.inputChange.bind(this)} />
-            <button>增加服务</button>
+            <button onClick={this.addList.bind(this)}>增加服务</button>
           </div>
           <ul>
-            <li>服务1</li>
-            <li>服务2</li>
+            {
+              // es6数组, map方法
+              this.state.list.map((item,index)=>{
+                return <li>{item}</li>
+              })
+            }
           </ul>
         </Fragment>      
     )
@@ -28,8 +32,13 @@ export default class Xiaojiejie extends Component{
   inputChange(e){
     console.log(e.target.value); 
     console.log(this); // this.inputChange.bind(this) 不写就是undefined
-    this.setState(
-      {inputValue:e.target.value}
-    );
+    this.setState({inputValue:e.target.value});
+  }
+
+  addList(){
+    this.setState({      
+      list:[...this.state.list, this.state.inputValue], //...是扩展运算符, 动态添加数组.
+      inputValue:''  //赋值后, 输入框置空
+    })
   }
 }
