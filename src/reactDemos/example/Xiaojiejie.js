@@ -21,7 +21,7 @@ export default class Xiaojiejie extends Component{
             {
               // es6数组, map方法
               this.state.list.map((item,index)=>{
-                return <li>{item}</li>
+                return <li key={index+item}>{item}</li>
               })
             }
           </ul>
