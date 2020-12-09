@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import XiaojiejieItem from './XiaojiejieItem';
 
 export default class Xiaojiejie extends Component{
   constructor(props) {
@@ -21,12 +22,15 @@ export default class Xiaojiejie extends Component{
             {
               // es6数组, map方法
               this.state.list.map((item,index)=>{
-                // 注意这里的 bind() 两个东西, index传过去了
+                // eslint-disable-next-line no-lone-blocks
+                { /*                   
                 return (<li 
                             key={index+item} 
                             onClick={this.deleteItem.bind(this,index)}>  
                               {item}                  
-                        </li>);
+                        </li>);  
+                */}                
+                return (<XiaojiejieItem></XiaojiejieItem>);
               })
             }
           </ul>
