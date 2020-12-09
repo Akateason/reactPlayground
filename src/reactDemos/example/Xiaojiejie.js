@@ -21,7 +21,12 @@ export default class Xiaojiejie extends Component{
             {
               // es6数组, map方法
               this.state.list.map((item,index)=>{
-                return <li key={index+item}>{item}</li>
+                // 注意这里的 bind() 两个东西, index传过去了
+                return (<li 
+                            key={index+item} 
+                            onClick={this.deleteItem.bind(this,index)}>  
+                              {item}                  
+                        </li>);
               })
             }
           </ul>
@@ -40,5 +45,13 @@ export default class Xiaojiejie extends Component{
       list:[...this.state.list, this.state.inputValue], //...是扩展运算符, 动态添加数组.
       inputValue:''  //赋值后, 输入框置空
     })
+  }
+
+  deleteItem(index){
+    let list = this.state.list;
+    list.splice(index,1);
+    this.setState({
+      list:list
+    });
   }
 }
