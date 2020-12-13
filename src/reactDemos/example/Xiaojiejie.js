@@ -30,7 +30,13 @@ export default class Xiaojiejie extends Component{
                               {item}                  
                         </li>);  
                 */}                
-                return (<XiaojiejieItem></XiaojiejieItem>);
+                return (<XiaojiejieItem 
+                          key={index+item} 
+                          content={item}
+                          index={index}
+                          deleteItem={this.deleteItem.bind(this)}
+                          />);                          
+                          // 父组件传值给子组件. 子组件不能有方法, 也要用父组件的方法传值过去.
               })
             }
           </ul>
