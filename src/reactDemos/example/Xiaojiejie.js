@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import XiaojiejieItem from './XiaojiejieItem';
 
 export default class Xiaojiejie extends Component{
+  
+  //初始化阶段
   constructor(props) {
     super(props);
     this.state={
@@ -10,14 +12,47 @@ export default class Xiaojiejie extends Component{
     }
   }
 
+  componentWillMount(){
+    console.log('componentWillMount 将要挂载')
+  }
+
+  componentDidMount(){
+    console.log('componentDidMount 挂载完成')
+  }
+
+  shouldComponentUpdate(){
+    console.log('1-shouldComponentUpdate')
+    return true;
+  }
+
+  componentWillUpdate(){
+    console.log('2-componentWillUpdate')
+  }
+
+  componentDidUpdate(){
+    console.log('4-componentDidUpdate')
+  }
+
+  componentWillUnmount(){
+    console.log('componentWillUnmount 组件删除')
+  }
+
+  //渲染
   render(){
+    console.log('3-render - 组件挂载中')
     return(      
         <Fragment>
           <div>
           {/*  状态绑定, 和事件绑定 */}
-            <input value={this.state.inputValue} onChange={this.inputChange.bind(this)} />
+            <input
+              id='jspang'
+              value={this.state.inputValue}
+              onChange={this.inputChange.bind(this)}
+              ref = {((input)=>{this.input=input})} //ref绑定 es6. 把input赋给this.input
+            />
             <button onClick={this.addList.bind(this)}>增加服务</button>
           </div>
+
           <ul>
             {
               // es6数组, map方法
@@ -44,10 +79,14 @@ export default class Xiaojiejie extends Component{
     )
   }
  
-  inputChange(e){
-    console.log(e.target.value); 
-    console.log(this); // this.inputChange.bind(this) 不写就是undefined
-    this.setState({inputValue:e.target.value});
+  // inputChange(e){
+  //   console.log(e.target.value); 
+  //   console.log(this); // this.inputChange.bind(this) 不写就是undefined
+  //   this.setState({inputValue:e.target.value});
+  // }
+//jsx中用了ref绑定了this.input, 替换e.target.value的写法
+  inputChange(){        
+    this.setState({inputValue:this.input.value});
   }
 
   addList(){
