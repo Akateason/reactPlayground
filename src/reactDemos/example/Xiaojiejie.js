@@ -1,3 +1,4 @@
+import Axios from 'axios';
 import React, { Component, Fragment } from 'react';
 import XiaojiejieItem from './XiaojiejieItem';
 
@@ -12,6 +13,12 @@ export default class Xiaojiejie extends Component{
     }
   }
 
+  componentDidMount(){
+    Axios.post('https://api.apiopen.top/getJoke?page=1&count=2&type=video')
+    .then((res)=>{console.log('axios sucess : ' + JSON.stringify(res))})
+    .catch((error)=>{console.log('axios fail : ' + error);})
+  }
+   
   //渲染
   render(){    
     
@@ -74,3 +81,6 @@ export default class Xiaojiejie extends Component{
     });
   }
 }
+
+
+
