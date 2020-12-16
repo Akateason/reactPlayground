@@ -12,34 +12,9 @@ export default class Xiaojiejie extends Component{
     }
   }
 
-  componentWillMount(){
-    console.log('componentWillMount 将要挂载')
-  }
-
-  componentDidMount(){
-    console.log('componentDidMount 挂载完成')
-  }
-
-  shouldComponentUpdate(){
-    console.log('1-shouldComponentUpdate')
-    return true;
-  }
-
-  componentWillUpdate(){
-    console.log('2-componentWillUpdate')
-  }
-
-  componentDidUpdate(){
-    console.log('4-componentDidUpdate')
-  }
-
-  componentWillUnmount(){
-    console.log('componentWillUnmount 组件删除')
-  }
-
   //渲染
-  render(){
-    console.log('3-render - 组件挂载中')
+  render(){    
+    
     return(      
         <Fragment>
           <div>
@@ -79,11 +54,6 @@ export default class Xiaojiejie extends Component{
     )
   }
  
-  // inputChange(e){
-  //   console.log(e.target.value); 
-  //   console.log(this); // this.inputChange.bind(this) 不写就是undefined
-  //   this.setState({inputValue:e.target.value});
-  // }
 //jsx中用了ref绑定了this.input, 替换e.target.value的写法
   inputChange(){        
     this.setState({inputValue:this.input.value});
