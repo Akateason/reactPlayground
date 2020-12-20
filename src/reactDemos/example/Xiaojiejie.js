@@ -9,13 +9,20 @@ export default class Xiaojiejie extends Component{
     super(props);
     this.state={
       inputValue:'',
-      list:['服务1','服务2']
+      list:[]
     }
   }
 
   componentDidMount(){
-    Axios.post('https://api.apiopen.top/getJoke?page=1&count=2&type=video')
-    .then((res)=>{console.log('axios sucess : ' + JSON.stringify(res))})
+    // 用rap2的假数据
+    Axios.get('http://rap2api.taobao.org/app/mock/data/1829085')
+    .then((res)=>{
+      console.log('axios sucess : ' + JSON.stringify(res))
+      //axios sucess : {"data":{"datas":["product1","product2","product3"]},"status":200,"statusText":"OK","headers":{"content-length":"67","content-type":"application/json; charset=utf-8"},"config":{"url":"http://rap2api.taobao.org/app/mock/data/1829085","method":"get","headers":{"Accept":"application/json, text/plain, */*"},"transformRequest":[null],"transformResponse":[null],"timeout":0,"xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN","maxContentLength":-1,"maxBodyLength":-1},"request":{}}
+      this.setState({
+        list:res.data.datas //js解析直接解析
+      })      
+    })
     .catch((error)=>{console.log('axios fail : ' + error);})
   }
    
