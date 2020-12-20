@@ -1,6 +1,8 @@
 import Axios from 'axios';
 import React, { Component, Fragment } from 'react';
+import Boss from './Boss';
 import XiaojiejieItem from './XiaojiejieItem';
+import './style.css'
 
 export default class Xiaojiejie extends Component{
   
@@ -64,6 +66,7 @@ export default class Xiaojiejie extends Component{
               })
             }
           </ul>
+          <Boss />
         </Fragment>      
     )
   }
