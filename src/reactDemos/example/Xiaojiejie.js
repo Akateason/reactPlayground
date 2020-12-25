@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react';
 import Boss from './Boss';
 import XiaojiejieItem from './XiaojiejieItem';
 import './style.css'
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 export default class Xiaojiejie extends Component{
   
@@ -45,26 +46,29 @@ export default class Xiaojiejie extends Component{
           </div>
 
           <ul>
+            <TransitionGroup>
             {
               // es6数组, map方法
-              this.state.list.map((item,index)=>{
-                // eslint-disable-next-line no-lone-blocks
-                { /*                   
-                return (<li 
-                            key={index+item} 
-                            onClick={this.deleteItem.bind(this,index)}>  
-                              {item}                  
-                        </li>);  
-                */}                
-                return (<XiaojiejieItem 
+              this.state.list.map((item,index)=>{                          
+                return (
+                    <CSSTransition
+                      timeout={2000}
+                      classNames='boss-text'
+                      unmountOnExit
+                      appear={true}
+                      key={index+item}
+                    >
+                      <XiaojiejieItem 
                           key={index+item} 
                           content={item}
                           index={index}
                           deleteItem={this.deleteItem.bind(this)}
-                          />);                          
-                          // 父组件传值给子组件. 子组件不能有方法, 也要用父组件的方法传值过去.
+                      />
+                    </CSSTransition>                  
+                  );
               })
             }
+            </TransitionGroup>
           </ul>
           <Boss />
         </Fragment>      
