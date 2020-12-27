@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import TodoList from "./reactDemos/reduxDemo/TodoList";
 // import Xiaojiejie from "./reactDemos/example/Xiaojiejie";
-import TodoList from "./reactDemos/redux/TodoList";
 // import App from "./reactDemos/example/App";
 //import { Game } from "./reactDemos/game/game";
 
