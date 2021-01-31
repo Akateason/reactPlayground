@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css'
 import { Input, Button, List } from 'antd';
 import store from './store';
-import { ADD_ITEM, CHANGE_INPUT, DELETE_ITEM } from './store/actionTypes';
+import { addItemAction, changeInputAction, deleteItemAction } from './store/actionCreators';
 
 class TodoList extends Component {
   constructor(props) {
     super(props);
     this.state = store.getState();  // 从redux拿state
-    this.changeInputValue = this.changeInputValue.bind(this);
-    this.storeChange = this.storeChange.bind(this);
+    this.changeInputValue = this.changeInputValue.bind(this);    
     this.clickBtn = this.clickBtn.bind(this);    
+    this.storeChange = this.storeChange.bind(this);
     store.subscribe(this.storeChange) //订阅
   }
 
@@ -38,7 +38,7 @@ class TodoList extends Component {
               (item,index)=>(
               <List.Item onClick={this.deleteItem.bind(this,index)}>
                 {item}
-              </List.Item>)}
+              </List.Item>)}   
           />
         </div>
       </div> 
@@ -46,11 +46,8 @@ class TodoList extends Component {
   }
 
   changeInputValue(e){       
-    //console.log(e.target.value);
-    const action = {
-      type: CHANGE_INPUT,
-      value: e.target.value
-    }
+    // console.log(e.target.value);
+    const action = changeInputAction(e.target.value);    
     store.dispatch(action);
   }
 
@@ -59,15 +56,12 @@ class TodoList extends Component {
   }
 
   clickBtn(){
-    const action = {type:ADD_ITEM};
+    const action = addItemAction();
     store.dispatch(action);
   }
 
   deleteItem(index){
-    const action = {
-      type:DELETE_ITEM,
-      index
-    };
+    const action = deleteItemAction(index);
     store.dispatch(action)
   }
 }
