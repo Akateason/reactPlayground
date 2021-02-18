@@ -1,7 +1,8 @@
+import Axios from 'axios';
 import React, { Component } from 'react';
 
 import store from './store';
-import { addItemAction, changeInputAction, deleteItemAction } from './store/actionCreators';
+import { addItemAction, changeInputAction, deleteItemAction, getListAction } from './store/actionCreators';
 import TodoListUI from './TodoListUI';
 
 class TodoList extends Component {
@@ -25,6 +26,14 @@ class TodoList extends Component {
         deleteItem={this.deleteItem}
       />
     );
+  }
+
+  componentDidMount(){
+    Axios.get('http://rap2api.taobao.org/app/mock/273479/jspangdemo/datas').then(res=>{      
+      const data = res.data;      
+      const action = getListAction(data);
+      store.dispatch(action);
+    })
   }
 
   changeInputValue(e){       

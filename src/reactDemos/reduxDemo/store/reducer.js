@@ -2,15 +2,11 @@
 // Reducer里只能接收State, 不能改变State.
 // reducer必须是一个纯函数, 变化只依赖于参数(state,action). 不能返回和参数无关的结果.
 
-import { ADD_ITEM, CHANGE_INPUT, DELETE_ITEM } from "./actionTypes";
+import { ADD_ITEM, CHANGE_INPUT, DELETE_ITEM, GET_LIST } from "./actionTypes";
 
 const defaultState = {
   inputValue:'Write Something!',
-  list:[
-    '早上6点开会, 分配任务',
-    '早上9点吃饭',
-    '晚上10点睡觉'
-  ]
+  list:[]
 }
 
 export default (state = defaultState, action)=>{
@@ -32,6 +28,12 @@ export default (state = defaultState, action)=>{
   if (action.type === DELETE_ITEM) {
     let newState = JSON.parse(JSON.stringify(state));//深拷贝
     newState.list.splice(action.index,1);    
+    return newState;
+  }
+
+  if (action.type === GET_LIST) {
+    let newState = JSON.parse(JSON.stringify(state));//深拷贝    
+    newState.list = action.data.datas;
     return newState;
   }
 
